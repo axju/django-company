@@ -1,6 +1,13 @@
-=======
-Company
-=======
+==============
+Django Company
+==============
+
+This is a small django app for running an company web-page. It include only two
+mean models. The Portfolio showing what the company can and the Post-model
+for new content.
+
+It will by push to https://pypi.org soon. And maybe I write some help for other
+people.
 
 Quick start
 -----------

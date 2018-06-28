@@ -9,13 +9,13 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-company',
-    version='0.1',
+    version='0.0.1',
     packages=find_packages(),
     include_package_data=True,
-    license='BSD License',  # example license
+    license='MIT License',
     description='A simple Django app to conduct Web-based company.',
     long_description=README,
-    url='https://www.example.com/',
+    url='https://github.com/axju/django-company',
     author='Axel Juraske',
     author_email='axel.juraske@short-report.de',
     classifiers=[
