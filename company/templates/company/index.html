@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Willkommen{% endblock %}
+
+{% block content %}
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          {% for headline in headlines %}
+          <li data-target="#myCarousel" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+          {% endfor %}
+        </ol>
+
+        <div class="carousel-inner">
+          {% for headline in headlines %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              {% if headline.image %}
+              <img class="first-slide" src="{{ headline.image.url }}" alt="First slide">
+              {% else %}
+              <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+              {% endif %}
+              <div class="container">
+                <div class="carousel-caption">
+                  <h1>{{ headline.title }}</h1>
+                  <p>{{ headline.description }}</p>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+		    </div>
+
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+
+      <div class="container marketing">
+
+        <div class="row">
+          {% for feature in features %}
+            <div class="col-lg-4">
+              {% if feature.image %}
+              <img class="rounded-circle" src="{{ feature.image.url }}" alt="Generic placeholder image" width="140" height="140">
+              {% else %}
+              <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+              {% endif %}
+              <h2>{{ feature.title }}</h2>
+              <p>{{ feature.description }}</p>
+              {% if feature.info %}
+              <p><a class="btn btn-secondary" href="{% url 'company:post-detail' pk=feature.info.pk %}" role="button">View details &raquo;</a></p>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <form method="post" action="{% url 'newssubscriber:subscribe' newsletter='test' %}">
+          {% csrf_token %}
+          <tr><th><label for="id_email">Email:</label></th><td><input type="email" name="email" required id="id_email" /></td></tr>
+          <button type="submit">subscribe</button>
+        </form>
+
+      </div>
+
+{% endblock %}

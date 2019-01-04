@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}News{% endblock %}
+
+{% block content %}
+<div class="container pt-5">
+  <h1>News</h1>
+  <ul>
+  {% for post in object_list %}
+      <li>{{ post }} <a href="{% url 'company:post-detail' pk=post.pk %}">more</a></li>
+  {% empty %}
+      <li>No infos yet.</li>
+  {% endfor %}
+  </ul>
+
+</div>
+{% endblock %}
